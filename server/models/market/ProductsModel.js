@@ -32,6 +32,10 @@ const ProductsSchema = new Schema(
       type: Number,
       required: true,
     },
+    afterDiscount: {
+      type: Number,
+      required: true,
+    },
     description: {
       type: String,
       required: true,
