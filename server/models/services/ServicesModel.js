@@ -1,32 +1,25 @@
 import { model, Schema } from 'mongoose';
 
-const ProductsSchema = new Schema(
+const ServicesSchema = new Schema(
   {
-    productName: {
+    serviceName: {
       type: String,
       required: true,
     },
-    brand: {
+    serviceProvider: {
       type: String,
       required: true,
     },
     images: {
       type: [String],
       required: true,
+      default: ['../../assets/images/ArchiMatter.png'],
     },
-    color: {
+    category: {
       type: String,
       required: true,
     },
-    size: {
-      type: Number,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    afterDiscount: {
+    startingPrice: {
       type: Number,
       required: true,
     },
@@ -34,7 +27,7 @@ const ProductsSchema = new Schema(
       type: String,
       required: true,
     },
-    countryOfOrigin: {
+    countryOfProvider: {
       type: String,
       required: true,
     },
@@ -44,5 +37,5 @@ const ProductsSchema = new Schema(
   }
 );
 
-const Product = model('Product', ProductsSchema);
-export default Product;
+const Service = model('Service', ServicesSchema);
+export default Service;

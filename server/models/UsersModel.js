@@ -44,6 +44,10 @@ const UsersSchema = new Schema(
       type: String,
       required: true,
     },
+    profilePicture: {
+      type: String,
+      default: '../assets/images/profilePic.png',
+    },
     shippingAddress: {
       type: ShippingAddressSchema,
       required: true,

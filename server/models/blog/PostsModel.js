@@ -20,7 +20,7 @@ const PostsModel = new Schema(
     },
     image: {
       type: String,
-      default: '../../assets/images/ArchiMatter.png',
+      default: '../assets/images/ArchiMatter.png',
     },
   },
   { timestamps: true }
