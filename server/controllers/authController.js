@@ -1,4 +1,4 @@
-import { hash } from 'argon2';
+import { hash, verify } from 'argon2';
 import { errorHelper } from '../helpers/authHelpers.js';
 import User from '../models/UsersModel.js';
 
@@ -7,15 +7,15 @@ export const signUp = async (req, res) => {
 
   // Checking missing data
   if (!username && !email && !password && !shippingAddress) {
-    return errorHelper(req, res, 'Missing Fields!');
+    return errorHelper(req, res, 'Missing Fields!', 400);
   }
 
   if (!username) {
-    return errorHelper(req, res, 'Missing Username!');
+    return errorHelper(req, res, 'Missing Username!', 400);
   }
 
   if (!email) {
-    return errorHelper(req, res, 'Missing Email!');
+    return errorHelper(req, res, 'Missing Email!', 400);
   }
 
   if (
@@ -27,10 +27,10 @@ export const signUp = async (req, res) => {
     !shippingAddress.country ||
     !shippingAddress.telephone
   ) {
-    return errorHelper(req, res, 'Missing Shipping Address!');
+    return errorHelper(req, res, 'Missing Shipping Address!', 400);
   }
   if (!password) {
-    return errorHelper(req, res, 'Missing Password!');
+    return errorHelper(req, res, 'Missing Password!', 400);
   }
 
   // checks if (email || username) was already signed up or exists before
@@ -38,10 +38,10 @@ export const signUp = async (req, res) => {
   const usernameExists = await User.findOne({ username });
 
   if (emailExists) {
-    return errorHelper(req, res, 'Email already exists.');
+    return errorHelper(req, res, 'Email already exists.', 409);
   }
   if (usernameExists) {
-    return errorHelper(req, res, 'Username already exists.');
+    return errorHelper(req, res, 'Username already exists.', 409);
   }
 
   // Hashing important information; Password, location, telephone
@@ -67,9 +67,32 @@ export const signUp = async (req, res) => {
   });
 
   await newUser.save();
-  console.log('New User Added to database!');
+  console.log('New User been Added to database!');
   res.status(201).json({
     message: `Welcome ${shippingAddress.firstName}! We're thrilled to have you on board!`,
     data: newUser,
   });
+};
+
+export const signIn = async (req, res) => {
+  const { email, password } = req.body;
+  const emailCheck = await User.findOne({ email });
+
+  if (!email || !password) {
+    // 400 Bad Request
+    return errorHelper(req, res, 'Please fill in the required fields', 400);
+  } else if (emailCheck && password) {
+    const passwordCheck = await verify(emailCheck.password, password);
+    if (emailCheck && passwordCheck) {
+      // Personalizing Welcome messages
+      return res.status(200).json({
+        message: `Welcome back ${emailCheck.shippingAddress.firstName}`,
+      });
+    } else {
+      // 401 Unauthorized
+      return errorHelper(req, res, 'Wrong Password. Please try again', 401);
+    }
+  } else if (!emailCheck) {
+    return errorHelper(req, res, 'User Not Found.', 404);
+  }
 };

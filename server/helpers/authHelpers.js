@@ -1,4 +1,4 @@
-export const errorHelper = (req, res, error) => {
+export const errorHelper = (req, res, error, statusCode) => {
   console.error(`Error: ${error}`);
-  return res.status(400).json({ message: error });
+  return res.status(statusCode).json({ message: error });
 };
