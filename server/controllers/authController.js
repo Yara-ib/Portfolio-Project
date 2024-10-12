@@ -84,10 +84,15 @@ export const signIn = async (req, res) => {
   } else if (emailCheck && password) {
     const passwordCheck = await verify(emailCheck.password, password);
     if (emailCheck && passwordCheck) {
-      // Personalizing Welcome messages
-      return res.status(200).json({
-        message: `Welcome back ${emailCheck.shippingAddress.firstName}`,
-      });
+      if (!emailCheck.bannedOrNot) {
+        // Personalizing Welcome messages
+        return res.status(200).json({
+          message: `Welcome back ${emailCheck.shippingAddress.firstName}`,
+        });
+      } else {
+        // 423 Locked || Banned
+        return errorHelper(req, res, 'Sorry, but your account is banned!', 423);
+      }
     } else {
       // 401 Unauthorized
       return errorHelper(req, res, 'Wrong Password. Please try again', 401);

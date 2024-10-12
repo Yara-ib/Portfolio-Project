@@ -52,7 +52,11 @@ const UsersSchema = new Schema(
       type: ShippingAddressSchema,
       required: true,
     },
-    admin: {
+    adminOrNot: {
+      type: Boolean,
+      default: false,
+    },
+    bannedOrNot: {
       type: Boolean,
       default: false,
     },
