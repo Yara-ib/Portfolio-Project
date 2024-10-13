@@ -1,5 +1,6 @@
 import { hash, verify } from 'argon2';
-import { errorHelper } from '../helpers/authHelpers.js';
+import { errorHelper } from '../helpers/errorHelper.js';
+import { getNewToken } from '../helpers/tokensHelper.js';
 import User from '../models/users/UsersModel.js';
 
 export const signUp = async (req, res) => {
@@ -88,6 +89,8 @@ export const signIn = async (req, res) => {
         // Personalizing Welcome messages
         return res.status(200).json({
           message: `Welcome back ${emailCheck.shippingAddress.firstName}`,
+          token: getNewToken(emailCheck._id),
+          emailCheck,
         });
       } else {
         // 423 Locked || Banned

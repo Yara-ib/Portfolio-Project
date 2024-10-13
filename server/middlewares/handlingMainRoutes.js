@@ -1,10 +1,13 @@
 import { Router } from 'express';
-import { authRoutes } from '../routes/users/authRoutes.js';
-import { errorHelper } from '../helpers/authHelpers.js';
+import { authenticationRoutes } from '../routes/users/authenticationRoutes.js';
+import { authorizationRoutes } from '../routes/users/authorizationRoutes.js';
+import { errorHelper } from '../helpers/errorHelper.js';
 
 export const mainRoutes = Router();
 
-mainRoutes.use('/', authRoutes);
+// Getting all routes
+mainRoutes.use('/users', authenticationRoutes);
+mainRoutes.use('/users', authorizationRoutes);
 
 // Route NOT Found "Last To check"
 mainRoutes.use((req, res) => {
