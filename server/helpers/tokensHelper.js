@@ -9,7 +9,9 @@ export const getTokenFromHeader = (req) => {
     const token = req.headers.authorization.split(' ')[1];
     return token;
   } else {
-    console.log('Someone tried to access Profile page, but token wasn\'t found!');
+    console.log(
+      "Someone tried to access Profile page, but token wasn't found!"
+    );
     return 'Token not found!';
   }
 };
@@ -21,8 +23,5 @@ export const verifyTokenToGetID = (token) => {
     } else {
       return false;
     }
-
-
-monitoring
   });
 };
