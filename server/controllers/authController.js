@@ -104,3 +104,9 @@ export const signIn = async (req, res) => {
     return errorHelper(req, res, 'User Not Found.', 404);
   }
 };
+
+export const getProfilePage = async (req, res) => {
+  res.status(200).json({
+    message: 'Welcome back to your Profile Page',
+  });
+};
