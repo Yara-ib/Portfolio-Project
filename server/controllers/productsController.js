@@ -57,6 +57,8 @@ export const addProduct = async (req, res) => {
     price,
     description,
     countryOfOrigin,
+    // To check if logged in & adminAccess
+    user: req.authorizedId,
   });
 
   await newProduct.save();
