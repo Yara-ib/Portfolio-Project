@@ -70,3 +70,12 @@ export const addProduct = async (req, res) => {
     data: newProduct,
   });
 };
+
+export const getProduct = async (req, res) => {
+  if (req.params.id) {
+    const product = await Product.findById(req.params.id);
+    return res.status(200).json({
+      product,
+    });
+  }
+};
