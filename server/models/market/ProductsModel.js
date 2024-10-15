@@ -6,6 +6,14 @@ const ProductsSchema = new Schema(
       type: String,
       required: true,
     },
+    mainCategory: {
+      type: String,
+      required: true,
+    },
+    subCategory: {
+      type: String,
+      required: true,
+    },
     brand: {
       type: String,
       required: true,
@@ -19,8 +27,10 @@ const ProductsSchema = new Schema(
       required: true,
     },
     size: {
-      type: Number,
-      required: true,
+      // Reference to another document using ObjectId
+      // instead of embedding the whole object
+      type: Schema.Types.ObjectId,
+      ref: 'Size',
     },
     price: {
       type: Number,
@@ -28,7 +38,6 @@ const ProductsSchema = new Schema(
     },
     afterDiscount: {
       type: Number,
-      required: true,
     },
     description: {
       type: String,
