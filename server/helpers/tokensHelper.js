@@ -10,7 +10,7 @@ export const getTokenFromHeader = (req) => {
     return token;
   } else {
     console.log(
-      "Someone tried to access Profile page, but token wasn't found!"
+      "Someone tried to access users' area, but token wasn't found!"
     );
     return 'Token not found!';
   }
