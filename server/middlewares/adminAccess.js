@@ -9,7 +9,7 @@ export const adminAccess = async (req, res, next) => {
     next();
   } else {
     res.status(403).json({
-      message: 'Access Denied, please login again',
+      message: 'Access Denied.',
     });
   }
 };
