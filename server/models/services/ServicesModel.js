@@ -7,8 +7,9 @@ const ServicesSchema = new Schema(
       required: true,
     },
     serviceProvider: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: 'ServiceProvider',
     },
     images: {
       type: [String],
