@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const PostsModel = new Schema(
+const PostsSchema = new Schema(
   {
     title: {
       type: String,
@@ -11,13 +11,16 @@ const PostsModel = new Schema(
       required: true,
     },
     author: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: 'Blogger',
     },
-    category: {
-      type: String,
-      required: true,
-    },
+    category: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     image: {
       type: String,
       default: '../assets/images/ArchiMatter.png',
@@ -26,5 +29,5 @@ const PostsModel = new Schema(
   { timestamps: true }
 );
 
-const Post = model('Post', PostsModel);
+const Post = model('Post', PostsSchema);
 export default Post;
