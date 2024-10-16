@@ -40,10 +40,6 @@ const ServiceProviderSchema = new Schema(
         ref: 'Service',
       },
     ],
-    adminOrNot: {
-      type: Boolean,
-      default: false,
-    },
     bannedOrNot: {
       type: Boolean,
       default: false,
