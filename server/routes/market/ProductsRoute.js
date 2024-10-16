@@ -3,12 +3,14 @@ import {
   addProduct,
   deleteProduct,
   getProduct,
+  updateProduct,
 } from '../../controllers/productsController.js';
 import { adminAccess } from '../../middlewares/adminAccess.js';
 import { checkAccess } from '../../middlewares/checkAccess.js';
 
 export const productRoutes = Router();
 
-productRoutes.post('/add', checkAccess, adminAccess, addProduct);
 productRoutes.get('/:id', getProduct);
+productRoutes.post('/add', checkAccess, adminAccess, addProduct);
 productRoutes.delete('/delete/:id', checkAccess, adminAccess, deleteProduct);
+productRoutes.put('/update/:id', checkAccess, adminAccess, updateProduct);
