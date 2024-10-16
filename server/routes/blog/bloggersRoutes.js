@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { signUpBlogger } from '../../controllers/blog/bloggersController.js';
+import {
+  signInBlogger,
+  signUpBlogger,
+} from '../../controllers/blog/bloggersController.js';
 
 export const bloggersRoutes = Router();
 bloggersRoutes.post('/newblogger', signUpBlogger);
+bloggersRoutes.post('/logblogger', signInBlogger);
