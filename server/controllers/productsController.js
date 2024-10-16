@@ -80,9 +80,7 @@ export const getProduct = async (req, res) => {
         product,
       });
     } else {
-      return res.status(404).json({
-        message: "There's no such product",
-      });
+      return errorHelper(req, res, "There's no such product", 404);
     }
   }
 };
@@ -90,9 +88,7 @@ export const getProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   if (req.params.id) {
     if (!checkValidId(req)) {
-      return res.status(400).json({
-        message: 'Please enter a valid id',
-      });
+      return errorHelper(req, res, 'Please enter a valid id', 400);
     } else {
       const productIDToDelete = await Product.findByIdAndDelete(req.params.id);
       if (productIDToDelete) {
@@ -101,9 +97,7 @@ export const deleteProduct = async (req, res) => {
           message: 'Product was successfully deleted!',
         });
       } else {
-        return res.status(404).json({
-          message: 'No product matches that id!',
-        });
+        return errorHelper(req, res, 'No product matches that id!', 404);
       }
     }
   }
@@ -124,9 +118,7 @@ export const updateProduct = async (req, res) => {
 
   if (req.params.id) {
     if (!checkValidId(req)) {
-      return res.status(400).json({
-        message: 'Please enter a valid id',
-      });
+      return errorHelper(req, res, 'Please enter a valid id', 400);
     } else {
       const productToUpdate = await Product.findByIdAndUpdate(
         req.params.id,
@@ -154,9 +146,7 @@ export const updateProduct = async (req, res) => {
           productToUpdate,
         });
       } else {
-        return res.status(404).json({
-          message: 'No product matches that id!',
-        });
+        return errorHelper(req, res, 'No product matches that id!', 404);
       }
     }
   }
