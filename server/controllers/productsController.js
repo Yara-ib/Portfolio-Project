@@ -81,7 +81,7 @@ export const getProduct = async (req, res) => {
       });
     } else {
       return res.status(404).json({
-        message: 'There\'s no such product',
+        message: "There's no such product",
       });
     }
   }
@@ -159,5 +159,21 @@ export const updateProduct = async (req, res) => {
         });
       }
     }
+  }
+};
+
+export const getAllProducts = async (req, res) => {
+  const products = await Product.find();
+  const countProducts = await Product.countDocuments();
+  if (products && countProducts > 0) {
+    return res.status(200).json({
+      message: "Here's the list of all Products",
+      products,
+    });
+  } else {
+    return res.status(404).json({
+      message: 'No products been found',
+      products: [],
+    });
   }
 };
