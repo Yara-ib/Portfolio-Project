@@ -11,4 +11,4 @@ export const productRoutes = Router();
 
 productRoutes.post('/add', checkAccess, adminAccess, addProduct);
 productRoutes.get('/:id', getProduct);
-productRoutes.delete('/delete/:id', deleteProduct);
+productRoutes.delete('/delete/:id', checkAccess, adminAccess, deleteProduct);
