@@ -1,3 +1,4 @@
+import { errorHelper } from '../helpers/errorHelper.js';
 import {
   getTokenFromHeader,
   verifyTokenToGetID,
@@ -16,8 +17,6 @@ export const checkAccess = async (req, res, next) => {
     );
     next();
   } else {
-    res.status(403).json({
-      message: 'Access Denied, please login again',
-    });
+    errorHelper(req, res, 'Access Denied, please try logging in again', 403);
   }
 };
