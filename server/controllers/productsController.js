@@ -1,3 +1,4 @@
+import { checkValidId } from '../helpers/checkValidId.js';
 import { errorHelper } from '../helpers/errorHelper.js';
 import Product from '../models/market/ProductsModel.js';
 
@@ -82,6 +83,28 @@ export const getProduct = async (req, res) => {
       return res.status(404).json({
         message: 'There\'s no such product',
       });
+    }
+  }
+};
+
+export const deleteProduct = async (req, res) => {
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return res.status(400).json({
+        message: 'Please enter a valid id',
+      });
+    } else {
+      const productIDToDelete = await Product.findByIdAndDelete(req.params.id);
+      if (productIDToDelete) {
+        console.log(`Product was successfully deleted!`);
+        return res.status(200).json({
+          message: 'Product was successfully deleted!',
+        });
+      } else {
+        return res.status(404).json({
+          message: 'No product matches that id!',
+        });
+      }
     }
   }
 };
