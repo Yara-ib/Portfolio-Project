@@ -1,6 +1,6 @@
-import { checkValidId } from '../helpers/checkValidId.js';
-import { errorHelper } from '../helpers/errorHelper.js';
-import Product from '../models/market/ProductsModel.js';
+import { checkValidId } from '../../helpers/checkValidId.js';
+import { errorHelper } from '../../helpers/errorHelper.js';
+import Product from '../../models/market/ProductsModel.js';
 
 // Need adminAccess Checking first; handled in middlewares
 export const addProduct = async (req, res) => {
