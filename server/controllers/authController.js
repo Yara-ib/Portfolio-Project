@@ -1,7 +1,7 @@
 import { hash, verify } from 'argon2';
-import { errorHelper } from '../../helpers/errorHelper.js';
-import { getNewToken } from '../../helpers/tokensHelper.js';
-import User from '../../models/users/UsersModel.js';
+import { errorHelper } from '../helpers/errorHelper.js';
+import { getNewToken } from '../helpers/tokensHelper.js';
+import User from '../models/users/UsersModel.js';
 
 export const signUp = async (req, res) => {
   const { username, email, password, shippingAddress } = req.body;
