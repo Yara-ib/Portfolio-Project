@@ -1,5 +1,6 @@
-import { hash } from 'argon2';
+import { hash, verify } from 'argon2';
 import { errorHelper } from '../../helpers/errorHelper.js';
+import { getNewToken } from '../../helpers/tokensHelper.js';
 import Blogger from '../../models/users/BloggersModel.js';
 
 export const signUpBlogger = async (req, res) => {
@@ -54,4 +55,34 @@ export const signUpBlogger = async (req, res) => {
     message: `Welcome ${newBlogger.username}! We're thrilled to have you on board!`,
     data: newBlogger,
   });
+};
+
+export const signInBlogger = async (req, res) => {
+  const { email, password } = req.body;
+  const emailCheck = await Blogger.findOne({ email });
+
+  if (!email || !password) {
+    // 400 Bad Request
+    return errorHelper(req, res, 'Please fill in the required fields', 400);
+  } else if (emailCheck && password) {
+    const passwordCheck = await verify(emailCheck.password, password);
+    if (emailCheck && passwordCheck) {
+      if (!emailCheck.bannedOrNot) {
+        // Personalizing Welcome messages
+        return res.status(200).json({
+          message: `Welcome back ${emailCheck.username}`,
+          token: getNewToken(emailCheck._id),
+          emailCheck,
+        });
+      } else {
+        // 423 Locked || Banned
+        return errorHelper(req, res, 'Sorry, but your account is banned!', 423);
+      }
+    } else {
+      // 401 Unauthorized
+      return errorHelper(req, res, 'Wrong Password. Please try again', 401);
+    }
+  } else if (!emailCheck) {
+    return errorHelper(req, res, 'Blogger Not Found.', 404);
+  }
 };
