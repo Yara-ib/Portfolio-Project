@@ -86,3 +86,9 @@ export const signInBlogger = async (req, res) => {
     return errorHelper(req, res, 'Blogger Not Found.', 404);
   }
 };
+
+export const getProfileBlogger = async (req, res) => {
+  res.status(200).json({
+    message: 'Welcome back to your Profile Page',
+  });
+};
