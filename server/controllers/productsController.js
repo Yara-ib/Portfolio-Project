@@ -74,8 +74,14 @@ export const addProduct = async (req, res) => {
 export const getProduct = async (req, res) => {
   if (req.params.id) {
     const product = await Product.findById(req.params.id);
-    return res.status(200).json({
-      product,
-    });
+    if (product) {
+      return res.status(200).json({
+        product,
+      });
+    } else {
+      return res.status(404).json({
+        message: 'There\'s no such product',
+      });
+    }
   }
 };
