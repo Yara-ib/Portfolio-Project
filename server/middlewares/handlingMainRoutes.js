@@ -3,6 +3,7 @@ import { authenticationRoutes } from '../routes/users/authenticationRoutes.js';
 import { authorizationRoutes } from '../routes/users/authorizationRoutes.js';
 import { errorHelper } from '../helpers/errorHelper.js';
 import { productRoutes } from '../routes/market/ProductsRoute.js';
+import { bloggersRoutes } from '../routes/blog/bloggersRoutes.js';
 
 export const mainRoutes = Router();
 
@@ -10,7 +11,11 @@ export const mainRoutes = Router();
 mainRoutes.use('/users', authenticationRoutes);
 mainRoutes.use('/users', authorizationRoutes);
 
+// Product Routes
 mainRoutes.use('/products', productRoutes);
+
+// Blog Routes
+mainRoutes.use('/blog', bloggersRoutes);
 
 // Route NOT Found "Last To check"
 mainRoutes.use((req, res) => {
