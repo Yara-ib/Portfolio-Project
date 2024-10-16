@@ -5,7 +5,7 @@ import {
   getAllProducts,
   getProduct,
   updateProduct,
-} from '../../controllers/productsController.js';
+} from '../../controllers/market/productsController.js';
 import { adminAccess } from '../../middlewares/adminAccess.js';
 import { checkAccess } from '../../middlewares/checkAccess.js';
 
