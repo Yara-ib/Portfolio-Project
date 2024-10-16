@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   addProduct,
+  deleteProduct,
   getProduct,
 } from '../../controllers/productsController.js';
 import { adminAccess } from '../../middlewares/adminAccess.js';
@@ -10,3 +11,4 @@ export const productRoutes = Router();
 
 productRoutes.post('/add', checkAccess, adminAccess, addProduct);
 productRoutes.get('/:id', getProduct);
+productRoutes.delete('/delete/:id', deleteProduct);
