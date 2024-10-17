@@ -1,3 +1,5 @@
+import { checkValidId } from '../../helpers/checkValidId.js';
+import { errorHelper } from '../../helpers/errorHelper.js';
 import Post from '../../models/blog/PostsModel.js';
 
 // Need Blogger Checking first; handled in middlewares
@@ -59,6 +61,26 @@ export const getPost = async (req, res) => {
       });
     } else {
       return errorHelper(req, res, "There's no such post", 404);
+    }
+  }
+};
+
+// Only for Admins now, will be handled in another phase
+//  to allow Bloggers to delete their own posts
+export const deletePost = async (req, res) => {
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      const postToDelete = await Product.findByIdAndDelete(req.params.id);
+      if (postToDelete) {
+        console.log('Post was successfully deleted!');
+        return res.status(200).json({
+          message: 'Post was successfully deleted!',
+        });
+      } else {
+        return errorHelper(req, res, 'No post matches that id!', 404);
+      }
     }
   }
 };
