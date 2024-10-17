@@ -121,3 +121,23 @@ export const getService = async (req, res) => {
     }
   }
 };
+
+// Only for Admins now, will be handled in another phase
+//  to allow Service Providers to delete their own services
+export const deleteService = async (req, res) => {
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      const serviceToDelete = await Service.findByIdAndDelete(req.params.id);
+      if (serviceToDelete) {
+        console.log('Service was successfully deleted!');
+        return res.status(200).json({
+          message: 'Service was successfully deleted!',
+        });
+      } else {
+        return errorHelper(req, res, 'No service matches that id!', 404);
+      }
+    }
+  }
+};
