@@ -33,3 +33,19 @@ export const addPost = async (req, res) => {
     data: newPost,
   });
 };
+
+export const getAllPosts = async (req, res) => {
+  const posts = await Post.find();
+  const countPosts = await Post.countDocuments();
+  if (posts && countPosts > 0) {
+    return res.status(200).json({
+      message: "Here's the list of all posts",
+      posts,
+    });
+  } else {
+    return res.status(404).json({
+      message: 'No posts been found',
+      posts: [],
+    });
+  }
+};
