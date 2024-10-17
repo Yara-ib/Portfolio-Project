@@ -92,3 +92,32 @@ export const updateService = async (req, res) => {
     }
   }
 };
+
+export const getAllService = async (req, res) => {
+  const services = await Service.find();
+  const countServices = await Service.countDocuments();
+  if (services && countServices > 0) {
+    return res.status(200).json({
+      message: "Here's the list of all services",
+      services,
+    });
+  } else {
+    return res.status(404).json({
+      message: 'No services been found',
+      services: [],
+    });
+  }
+};
+
+export const getService = async (req, res) => {
+  if (req.params.id) {
+    const service = await Service.findById(req.params.id);
+    if (service) {
+      return res.status(200).json({
+        service,
+      });
+    } else {
+      return errorHelper(req, res, "There's no such service", 404);
+    }
+  }
+};
