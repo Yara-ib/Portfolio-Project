@@ -49,3 +49,16 @@ export const getAllPosts = async (req, res) => {
     });
   }
 };
+
+export const getPost = async (req, res) => {
+  if (req.params.id) {
+    const post = await Post.findById(req.params.id);
+    if (post) {
+      return res.status(200).json({
+        post,
+      });
+    } else {
+      return errorHelper(req, res, "There's no such post", 404);
+    }
+  }
+};
