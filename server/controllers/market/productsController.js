@@ -153,17 +153,80 @@ export const updateProduct = async (req, res) => {
 };
 
 export const getAllProducts = async (req, res) => {
-  const products = await Product.find();
-  const countProducts = await Product.countDocuments();
-  if (products && countProducts > 0) {
+  // converting it to changeable request query when connected to the database; removing the "await"
+  // General query depends on the values server gets in the request
+  let products = Product.find();
+
+  // Filter By productName
+  if (req.query.productName) {
+    products = products.find({
+      productName: { $regex: req.query.productName, $options: 'i' },
+    });
+  }
+
+  // Filter By mainCategory
+  if (req.query.mainCategory) {
+    products = products.find({
+      mainCategory: { $regex: req.query.mainCategory, $options: 'i' },
+    });
+  }
+
+  // Filter By subCategory
+  if (req.query.subCategory) {
+    products = products.find({
+      subCategory: { $regex: req.query.subCategory, $options: 'i' },
+    });
+  }
+  // Filter By brand
+  if (req.query.brand) {
+    products = products.find({
+      brand: { $regex: req.query.brand, $options: 'i' },
+    });
+  }
+
+  // Filter By color
+  if (req.query.color) {
+    products = products.find({
+      color: { $regex: req.query.color, $options: 'i' },
+    });
+  }
+
+  // Filter By countryOfOrigin
+  if (req.query.countryOfOrigin) {
+    products = products.find({
+      countryOfOrigin: { $regex: req.query.countryOfOrigin, $options: 'i' },
+    });
+  }
+
+  // Filter By price range
+  if (req.query.minPrice || (req.query.maxPrice && !req.query.price)) {
+    const priceRange = {};
+    if (req.query.minPrice) {
+      priceRange.$gte = parseFloat(req.query.minPrice);
+    }
+    if (req.query.maxPrice) {
+      priceRange.$lte = parseFloat(req.query.maxPrice);
+    }
+    products = products.find({
+      price: priceRange,
+    });
+    // Getting by Exact Price
+  } else {
+    products = products.find({
+      price: parseFloat(req.query.price),
+    });
+  }
+
+  const productsToGet = await Product.find(products);
+  if (productsToGet && productsToGet.length > 0) {
     return res.status(200).json({
       message: "Here's the list of all Products",
-      products,
+      productsToGet,
     });
   } else {
     return res.status(404).json({
-      message: 'No products been found',
-      products: [],
+      message: 'No products have been found',
+      productsToGet: [],
     });
   }
 };
