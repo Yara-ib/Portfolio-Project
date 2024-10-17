@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import { signUpProvider } from '../../controllers/services/serviceProvidersController.js';
+import { signInProvider, signUpProvider } from '../../controllers/services/serviceProvidersController.js';
 
 export const serviceProvidersRoutes = Router();
 
 serviceProvidersRoutes.post('/newProvider', signUpProvider);
+serviceProvidersRoutes.post('/logProvider', signInProvider);
