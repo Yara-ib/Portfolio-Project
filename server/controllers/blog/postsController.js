@@ -36,17 +36,27 @@ export const addPost = async (req, res) => {
   });
 };
 
+// Getting All posts or Filtering Them
 export const getAllPosts = async (req, res) => {
-  const posts = await Post.find();
-  const countPosts = await Post.countDocuments();
-  if (posts && countPosts > 0) {
+  let posts = Post.find();
+
+  // Filter By category
+  if (req.query.category) {
+    posts = posts.find({
+      category: { $regex: req.query.category, $options: 'i' },
+    });
+  }
+
+  const postsToGet = await Post.find(posts);
+
+  if (postsToGet && postsToGet.length > 0) {
     return res.status(200).json({
       message: "Here's the list of all posts",
-      posts,
+      posts: postsToGet,
     });
   } else {
     return res.status(404).json({
-      message: 'No posts been found',
+      message: 'No posts have been found',
       posts: [],
     });
   }
