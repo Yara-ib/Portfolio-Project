@@ -13,4 +13,5 @@ servicesRoutes.get('/', getAllService);
 servicesRoutes.get('/:id', getService);
 
 servicesRoutes.post('/add', checkAccessProvider, addService);
-servicesRoutes.put('/update', checkAccessProvider, updateService);
+servicesRoutes.put('/update/:id', checkAccessProvider, updateService);
+
