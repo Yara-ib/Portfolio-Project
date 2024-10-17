@@ -111,3 +111,9 @@ export const signInProvider = async (req, res) => {
     );
   }
 };
+
+export const getProfileProvider= async (req, res) => {
+  res.status(200).json({
+    message: 'Welcome back to your Profile Page',
+  });
+};
