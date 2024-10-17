@@ -84,3 +84,38 @@ export const deletePost = async (req, res) => {
     }
   }
 };
+
+export const updatePost = async (req, res) => {
+  const { title, description, author, category, image } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      const postToUpdate = await Post.findByIdAndUpdate(
+        req.params.id,
+        {
+          title,
+          description,
+          author,
+          category,
+          image,
+        },
+        {
+          // To make sure the returned value is updated
+          // because default for findByIdAndUpdate returns the old document
+          new: true,
+        }
+      );
+      if (postToUpdate) {
+        console.log('Post was successfully updated!');
+        return res.status(200).json({
+          message: 'Post was successfully updated!',
+          postToUpdate,
+        });
+      } else {
+        return errorHelper(req, res, 'No post matches that id!', 404);
+      }
+    }
+  }
+};
