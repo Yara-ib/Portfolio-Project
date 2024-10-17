@@ -94,16 +94,39 @@ export const updateService = async (req, res) => {
 };
 
 export const getAllService = async (req, res) => {
-  const services = await Service.find();
-  const countServices = await Service.countDocuments();
-  if (services && countServices > 0) {
+  let services = Service.find();
+
+  // Filter By serviceProvider
+  if (req.query.serviceProvider) {
+    services = services.find({
+      serviceProvider: { $regex: req.query.serviceProvider, $options: 'i' },
+    });
+  }
+
+  // Filter By category
+  if (req.query.category) {
+    services = services.find({
+      category: { $regex: req.query.category, $options: 'i' },
+    });
+  }
+
+  // Filter By countryOfProvider
+  if (req.query.countryOfProvider) {
+    services = services.find({
+      countryOfProvider: { $regex: req.query.countryOfProvider, $options: 'i' },
+    });
+  }
+
+  const servicesToGet = await Service.find(services);
+
+  if (servicesToGet && servicesToGet.length > 0) {
     return res.status(200).json({
       message: "Here's the list of all services",
-      services,
+      services: servicesToGet,
     });
   } else {
     return res.status(404).json({
-      message: 'No services been found',
+      message: 'No services have been found',
       services: [],
     });
   }
