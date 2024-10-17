@@ -5,6 +5,7 @@ import { errorHelper } from '../helpers/errorHelper.js';
 import { productRoutes } from '../routes/market/ProductsRoute.js';
 import { bloggersRoutes } from '../routes/blog/bloggersRoutes.js';
 import { serviceProvidersRoutes } from '../routes/services/serviceProvidersRoutes.js';
+import { postsRoutes } from '../routes/blog/PostsRoutes.js';
 
 export const mainRoutes = Router();
 
@@ -21,6 +22,7 @@ mainRoutes.use('/services', serviceProvidersRoutes);
 
 // Blog Routes
 mainRoutes.use('/blog', bloggersRoutes);
+mainRoutes.use('/blog/posts', postsRoutes);
 
 // Route NOT Found "Last To check"
 mainRoutes.use((req, res) => {
