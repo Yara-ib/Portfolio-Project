@@ -5,7 +5,7 @@ import {
   getAllService,
   getService,
   updateService,
-} from '../../controllers/services/servicesController';
+} from '../../controllers/services/servicesController.js';
 import { adminAccess } from '../../middlewares/adminAccess.js';
 import { checkAccess } from '../../middlewares/checkAccess.js';
 import { checkAccessProvider } from '../../middlewares/checkAccess.js';
