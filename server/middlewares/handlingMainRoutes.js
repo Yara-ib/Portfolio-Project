@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { authenticationRoutes } from '../routes/users/authenticationRoutes.js';
 import { authorizationRoutes } from '../routes/users/authorizationRoutes.js';
-import { errorHelper } from '../helpers/errorHelper.js';
-import { productRoutes } from '../routes/market/ProductsRoute.js';
 import { bloggersRoutes } from '../routes/blog/bloggersRoutes.js';
-import { serviceProvidersRoutes } from '../routes/services/serviceProvidersRoutes.js';
+import { errorHelper } from '../helpers/errorHelper.js';
 import { postsRoutes } from '../routes/blog/PostsRoutes.js';
+import { productRoutes } from '../routes/market/ProductsRoute.js';
+import { serviceProvidersRoutes } from '../routes/services/serviceProvidersRoutes.js';
+import { servicesRoutes } from '../routes/services/servicesRoutes.js';
 
 export const mainRoutes = Router();
 
@@ -19,6 +20,7 @@ mainRoutes.use('/products', productRoutes);
 
 // Services Routes
 mainRoutes.use('/services', serviceProvidersRoutes);
+mainRoutes.use('/services', servicesRoutes);
 
 // Blog Routes
 mainRoutes.use('/blog', bloggersRoutes);
