@@ -1,3 +1,4 @@
+import { checkValidId } from '../../helpers/checkValidId.js';
 import { errorHelper } from '../../helpers/errorHelper.js';
 import Service from '../../models/services/ServicesModel.js';
 
@@ -45,4 +46,49 @@ export const addService = async (req, res) => {
     message: `${newService.serviceName}: ${newService.category} was added to the database!`,
     data: newService,
   });
+};
+
+export const updateService = async (req, res) => {
+  const {
+    serviceName,
+    serviceProvider,
+    images,
+    category,
+    startingPrice,
+    description,
+    countryOfProvider,
+  } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      const serviceToUpdate = await Service.findByIdAndUpdate(
+        req.params.id,
+        {
+          serviceName,
+          serviceProvider,
+          images,
+          category,
+          startingPrice,
+          description,
+          countryOfProvider,
+        },
+        {
+          // To make sure the returned value is updated
+          // because default for findByIdAndUpdate returns the old document
+          new: true,
+        }
+      );
+      if (serviceToUpdate) {
+        console.log('Service was successfully updated!');
+        return res.status(200).json({
+          message: 'Service was successfully updated!',
+          serviceToUpdate,
+        });
+      } else {
+        return errorHelper(req, res, 'No service matches that id!', 404);
+      }
+    }
+  }
 };
