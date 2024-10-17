@@ -198,7 +198,7 @@ export const getAllProducts = async (req, res) => {
     });
   }
 
-  // Filter By price range
+  // Filter By Price Range || Exact Price
   if (req.query.minPrice || (req.query.maxPrice && !req.query.price)) {
     const priceRange = {};
     if (req.query.minPrice) {
@@ -210,6 +210,7 @@ export const getAllProducts = async (req, res) => {
     products = products.find({
       price: priceRange,
     });
+
     // Getting by Exact Price
   } else {
     products = products.find({
@@ -218,15 +219,16 @@ export const getAllProducts = async (req, res) => {
   }
 
   const productsToGet = await Product.find(products);
+
   if (productsToGet && productsToGet.length > 0) {
     return res.status(200).json({
       message: "Here's the list of all Products",
-      productsToGet,
+      products: productsToGet,
     });
   } else {
     return res.status(404).json({
       message: 'No products have been found',
-      productsToGet: [],
+      products: [],
     });
   }
 };
