@@ -38,6 +38,9 @@ const ProductsSchema = new Schema(
     },
     afterDiscount: {
       type: Number,
+      default: function () {
+        return this.price;
+      },
     },
     description: {
       type: String,
