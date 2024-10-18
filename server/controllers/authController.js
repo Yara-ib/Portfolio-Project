@@ -162,8 +162,3 @@ export const updateProfile = async (req, res) => {
   }
 };
 
-//     res.status(200).json({
-//       message: 'Welcome back to your Profile Page',
-//     });
-//   }
-// };
