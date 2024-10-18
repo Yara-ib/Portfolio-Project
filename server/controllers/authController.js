@@ -1,4 +1,5 @@
 import { hash, verify } from 'argon2';
+import { checkValidId } from '../../helpers/checkValidId.js';
 import { errorHelper } from '../helpers/errorHelper.js';
 import { getNewToken } from '../helpers/tokensHelper.js';
 import User from '../models/users/UsersModel.js';
@@ -110,3 +111,59 @@ export const getProfilePage = async (req, res) => {
     message: 'Welcome back to your Profile Page',
   });
 };
+
+export const updateProfile = async (req, res) => {
+  const {
+    profilePicture,
+    shippingAddress: {
+      firstName,
+      lastName,
+      location,
+      city,
+      country,
+      telephone,
+    },
+  } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      const profileToUpdate = await User.findByIdAndUpdate(
+        req.params.id,
+        {
+          profilePicture,
+          shippingAddress: {
+            firstName,
+            lastName,
+            location,
+            city,
+            country,
+            telephone,
+          },
+        },
+        {
+          // To make sure the returned value is updated
+          // because default for findByIdAndUpdate returns the old document
+          new: true,
+        }
+      );
+    }
+
+    if (profileToUpdate) {
+      console.log(`Profile was successfully updated!`);
+      return res.status(200).json({
+        message: 'Profile was successfully updated!',
+        profileToUpdate,
+      });
+    } else {
+      return errorHelper(req, res, 'No Profile matches that id!', 404);
+    }
+  }
+};
+
+//     res.status(200).json({
+//       message: 'Welcome back to your Profile Page',
+//     });
+//   }
+// };
