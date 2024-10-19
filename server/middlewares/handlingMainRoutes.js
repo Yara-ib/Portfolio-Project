@@ -8,6 +8,7 @@ import { productRoutes } from '../routes/market/ProductsRoute.js';
 import { serviceProvidersRoutes } from '../routes/services/serviceProvidersRoutes.js';
 import { servicesRoutes } from '../routes/services/servicesRoutes.js';
 import { ordersRoutes } from '../routes/market/OrdersRoutes.js';
+import { authorizationAdminRoutes } from '../routes/users/authorizationAdminRoutes.js';
 
 export const mainRoutes = Router();
 
@@ -18,6 +19,8 @@ export const mainRoutes = Router();
 mainRoutes.use('/users', authenticationRoutes);
 // Restricted Areas: accessible for Users only
 mainRoutes.use('/users', authorizationRoutes);
+// Restricted Areas: accessible for Admins only
+mainRoutes.use('/admin', authorizationAdminRoutes);
 
 // ~ Market Section Routes::
 // Products Routes
