@@ -1,5 +1,5 @@
 import { hash, verify } from 'argon2';
-import { checkValidId } from '../../helpers/checkValidId.js';
+import { checkValidId } from '../helpers/checkValidId.js';
 import { errorHelper } from '../helpers/errorHelper.js';
 import { getNewToken } from '../helpers/tokensHelper.js';
 import User from '../models/users/UsersModel.js';
