@@ -1,6 +1,7 @@
 import { errorHelper } from '../../helpers/errorHelper.js';
 import Order from '../../models/market/OrdersModel.js';
 
+// POST Method: Allowed For Users after Signing In
 export const addOrder = async (req, res) => {
   const { user, products, orderStatus, totalAmount } = req.body;
   if (!user || !products || !orderStatus || !totalAmount) {

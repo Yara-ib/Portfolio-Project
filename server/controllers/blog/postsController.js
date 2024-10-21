@@ -2,6 +2,7 @@ import { checkValidId } from '../../helpers/checkValidId.js';
 import { errorHelper } from '../../helpers/errorHelper.js';
 import Post from '../../models/blog/PostsModel.js';
 
+// POST Method: Creating New Post | Allowed For Bloggers Only
 // Need Blogger Checking first; handled in middlewares
 export const addPost = async (req, res) => {
   const { title, description, author, category, image } = req.body;
@@ -62,6 +63,7 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
+// GET Method: To View the post's Page | Accessed By Anyone
 export const getPost = async (req, res) => {
   if (req.params.id) {
     const post = await Post.findById(req.params.id);
@@ -75,6 +77,7 @@ export const getPost = async (req, res) => {
   }
 };
 
+// DELETE Method: Accessed By Admins Only for now
 // Only for Admins now, will be handled in another phase
 //  to allow Bloggers to delete their own posts
 export const deletePost = async (req, res) => {
@@ -95,6 +98,7 @@ export const deletePost = async (req, res) => {
   }
 };
 
+// PUT Method: Accessed By Bloggers 
 export const updatePost = async (req, res) => {
   const { title, description, author, category, image } = req.body;
 

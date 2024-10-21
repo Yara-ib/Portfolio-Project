@@ -3,6 +3,7 @@ import { errorHelper } from '../../helpers/errorHelper.js';
 import { getNewToken } from '../../helpers/tokensHelper.js';
 import Blogger from '../../models/users/BloggersModel.js';
 
+// POST Method: Creating New Blogger | Allowed For Anyone
 export const signUpBlogger = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -34,7 +35,7 @@ export const signUpBlogger = async (req, res) => {
     return errorHelper(req, res, 'Username already exists.', 409);
   }
 
-  // Hashing Password
+  // Hashing Password for security & protection
   let hashedPassword;
   try {
     hashedPassword = await hash(password);
@@ -42,13 +43,14 @@ export const signUpBlogger = async (req, res) => {
     console.error(`Couldn't hash the password: ${error.message}`);
   }
 
-  // Creating the new Blogger; signing up
+  // Creating the new instance of the Blogger Model; signing up
   const newBlogger = new Blogger({
     username,
     email,
     password: hashedPassword,
   });
 
+  // Saving it to Database
   await newBlogger.save();
   console.log('New Blogger been Added to database!');
   res.status(201).json({
@@ -57,6 +59,7 @@ export const signUpBlogger = async (req, res) => {
   });
 };
 
+// POST Method: Checking information given by the blogger to Sign In
 export const signInBlogger = async (req, res) => {
   const { email, password } = req.body;
   const emailCheck = await Blogger.findOne({ email });
@@ -87,6 +90,8 @@ export const signInBlogger = async (req, res) => {
   }
 };
 
+// GET Method: To Access the Profile Page
+// Protected Path: Must check permissions before accessing it
 export const getProfileBlogger = async (req, res) => {
   res.status(200).json({
     message: 'Welcome back to your Profile Page',
