@@ -3,6 +3,7 @@ import { errorHelper } from '../../helpers/errorHelper.js';
 import { getNewToken } from '../../helpers/tokensHelper.js';
 import ServiceProvider from '../../models/users/ServiceProviderModel.js';
 
+// POST Method: Creating New Service Providers & adding them to DB
 export const signUpProvider = async (req, res) => {
   const {
     username,
@@ -77,6 +78,7 @@ export const signUpProvider = async (req, res) => {
   });
 };
 
+// POST Method: Checking information given by the Service Provider to Sign In
 export const signInProvider = async (req, res) => {
   const { email, password } = req.body;
   const emailCheck = await ServiceProvider.findOne({ email });
@@ -112,6 +114,8 @@ export const signInProvider = async (req, res) => {
   }
 };
 
+// GET Method: To Access the Profile Page
+// Protected Path: Must check permissions before accessing it
 export const getProfileProvider= async (req, res) => {
   res.status(200).json({
     message: 'Welcome back to your Profile Page',

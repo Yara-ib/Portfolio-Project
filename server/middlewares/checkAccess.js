@@ -7,6 +7,7 @@ import Blogger from '../models/users/BloggersModel.js';
 import ServiceProvider from '../models/users/ServiceProviderModel.js';
 import User from '../models/users/UsersModel.js';
 
+// To check if the User is actually registered or not
 export const checkAccess = async (req, res, next) => {
   const token = getTokenFromHeader(req);
   const access = verifyTokenToGetID(token);
@@ -23,6 +24,7 @@ export const checkAccess = async (req, res, next) => {
   }
 };
 
+// To check if the Blogger is actually registered or not
 export const checkAccessBlogger = async (req, res, next) => {
   const token = getTokenFromHeader(req);
   const access = verifyTokenToGetID(token);
@@ -39,6 +41,7 @@ export const checkAccessBlogger = async (req, res, next) => {
   }
 };
 
+// To check if the Service Provider is actually registered or not
 export const checkAccessProvider = async (req, res, next) => {
   const token = getTokenFromHeader(req);
   const access = verifyTokenToGetID(token);

@@ -1,6 +1,7 @@
 import { errorHelper } from '../helpers/errorHelper.js';
 import User from '../models/users/UsersModel.js';
 
+// MiddleWare To check if the User has the Admin Role or not
 export const adminAccess = async (req, res, next) => {
   const userById = await User.findById(req.authorizedId);
   if (userById && userById.adminOrNot) {

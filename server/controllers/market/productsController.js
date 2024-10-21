@@ -2,6 +2,7 @@ import { checkValidId } from '../../helpers/checkValidId.js';
 import { errorHelper } from '../../helpers/errorHelper.js';
 import Product from '../../models/market/ProductsModel.js';
 
+// POST Method: Creating New Product | Allowed For Admins Only
 // Need adminAccess Checking first; handled in middlewares
 export const addProduct = async (req, res) => {
   const {
@@ -72,6 +73,7 @@ export const addProduct = async (req, res) => {
   });
 };
 
+// GET Method: View Any Product by Id | Allowed For Anyone
 export const getProduct = async (req, res) => {
   if (req.params.id) {
     const product = await Product.findById(req.params.id);
@@ -85,6 +87,7 @@ export const getProduct = async (req, res) => {
   }
 };
 
+// DELETE Method: Allowed For Admins Only
 export const deleteProduct = async (req, res) => {
   if (req.params.id) {
     if (!checkValidId(req)) {
@@ -103,6 +106,7 @@ export const deleteProduct = async (req, res) => {
   }
 };
 
+// PUT Method: Allowed For Admins Only
 export const updateProduct = async (req, res) => {
   const {
     productName,
@@ -152,6 +156,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
+// GET Method: Allowed For Anyone
 export const getAllProducts = async (req, res) => {
   // converting it to changeable request query when connected to the database; removing the "await"
   // General query depends on the values server gets in the request

@@ -4,6 +4,7 @@ import { errorHelper } from '../helpers/errorHelper.js';
 import { getNewToken } from '../helpers/tokensHelper.js';
 import User from '../models/users/UsersModel.js';
 
+// POST Method: Creating New Users & adding them to DB
 export const signUp = async (req, res) => {
   const { username, email, password, shippingAddress } = req.body;
 
@@ -76,6 +77,7 @@ export const signUp = async (req, res) => {
   });
 };
 
+// POST Method: Checking information given by the User to Sign In
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
   const emailCheck = await User.findOne({ email });
@@ -106,12 +108,16 @@ export const signIn = async (req, res) => {
   }
 };
 
+// GET Method: To Access the Profile Page
+// Protected Path: Must check permissions before accessing it
 export const getProfilePage = async (req, res) => {
   res.status(200).json({
     message: 'Welcome back to your Profile Page',
   });
 };
 
+// PUT Method: To Update the Profile Page
+// Protected Path: Must check permissions before accessing it
 export const updateProfile = async (req, res) => {
   const {
     profilePicture,
@@ -162,6 +168,7 @@ export const updateProfile = async (req, res) => {
   }
 };
 
+// DELETE Method: Accessed By Admins Only for now
 export const deleteAccount = async (req, res) => {
   if (req.params.id) {
     if (!checkValidId(req)) {

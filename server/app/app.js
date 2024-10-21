@@ -9,6 +9,7 @@ dotenv.config();
 // Connecting to Database
 connection();
 
+//Creating an instance of Express
 const app = express();
 
 // Controlling the App to accept data from POST requests
