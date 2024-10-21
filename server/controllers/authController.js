@@ -148,16 +148,16 @@ export const updateProfile = async (req, res) => {
           new: true,
         }
       );
-    }
 
-    if (profileToUpdate) {
-      console.log(`Profile was successfully updated!`);
-      return res.status(200).json({
-        message: 'Profile was successfully updated!',
-        profileToUpdate,
-      });
-    } else {
-      return errorHelper(req, res, 'No Profile matches that id!', 404);
+      if (profileToUpdate) {
+        console.log(`Profile was successfully updated!`);
+        return res.status(200).json({
+          message: 'Profile was successfully updated!',
+          profileToUpdate,
+        });
+      } else {
+        return errorHelper(req, res, 'No Profile matches that id!', 404);
+      }
     }
   }
 };

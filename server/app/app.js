@@ -15,6 +15,6 @@ const app = express();
 app.use(express.json());
 
 // Getting MiddleWares
-app.use('/', mainRoutes);
+app.use('/api', mainRoutes);
 
 export default app;
