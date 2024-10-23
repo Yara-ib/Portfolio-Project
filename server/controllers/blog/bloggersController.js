@@ -1,4 +1,5 @@
 import { hash, verify } from 'argon2';
+import { checkValidId } from '../../helpers/checkValidId.js';
 import { errorHelper } from '../../helpers/errorHelper.js';
 import { getNewToken } from '../../helpers/tokensHelper.js';
 import Blogger from '../../models/users/BloggersModel.js';
@@ -96,4 +97,60 @@ export const getProfileBlogger = async (req, res) => {
   res.status(200).json({
     message: 'Welcome back to your Profile Page',
   });
+};
+
+// PUT Method: To Update the Profile Page
+// Protected Path: Must check permissions before accessing it
+export const updateBlogger = async (req, res) => {
+  const { firstName, lastName, biography, profilePicture } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      const profileToUpdate = await Blogger.findByIdAndUpdate(
+        req.params.id,
+        {
+          firstName,
+          lastName,
+          biography,
+          profilePicture,
+        },
+        {
+          // To make sure the returned value is updated
+          // because default for findByIdAndUpdate returns the old document
+          new: true,
+        }
+      );
+
+      if (profileToUpdate) {
+        console.log(`Profile was successfully updated!`);
+        return res.status(200).json({
+          message: 'Profile was successfully updated!',
+          profileToUpdate,
+        });
+      } else {
+        return errorHelper(req, res, 'No Profile matches that id!', 404);
+      }
+    }
+  }
+};
+
+// DELETE Method: Accessed By Admins Only
+export const deleteBlogger = async (req, res) => {
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid Id', 400);
+    }
+  } else {
+    const accountToDelete = await Blogger.findByIdAndDelete(req.params.id);
+    if (accountToDelete) {
+      console.log(`${accountToDelete.username} was successfully deleted!`);
+      return res.status(200).json({
+        message: `${accountToDelete.username} was successfully deleted!`,
+      });
+    } else {
+      return errorHelper(req, res, 'No account matches that id!', 404);
+    }
+  }
 };
