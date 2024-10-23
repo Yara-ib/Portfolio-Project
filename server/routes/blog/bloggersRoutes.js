@@ -10,7 +10,7 @@ import { checkAccessBlogger } from '../../middlewares/checkAccess.js';
 import { adminAccess } from '../../middlewares/adminAccess.js';
 
 export const bloggersRoutes = Router();
-// Authorization
+// Authentication & Authorization if they're users
 bloggersRoutes.post('/newblogger', signUpBlogger);
 bloggersRoutes.post('/logblogger', signInBlogger);
 
