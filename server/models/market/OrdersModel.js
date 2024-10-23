@@ -21,7 +21,7 @@ const OrdersSchema = new Schema(
         afterDiscountPerEach: {
           type: Number,
           default: function () {
-            return this.price;
+            return this.pricePerEach;
           },
         },
         color: {
@@ -50,13 +50,20 @@ const OrdersSchema = new Schema(
       default: 'pending confirmation',
     },
     totalAmount: {
-      type: Number,
-      required: true,
+      type: String,
       default: function () {
-        return (
-          this.products.numberOfProducts * this.products.afterDiscountPerEach
-        );
+        return this.products.reduce((sum, product) => {
+          return sum + product.numberOfProducts * product.afterDiscountPerEach;
+        }, 0);
       },
+    },
+    payThrough: {
+      type: String,
+      default: 'Not Selected yet',
+    },
+    paidOrNot: {
+      type: String,
+      default: 'Not Yet',
     },
     orderDate: {
       type: Date,
@@ -68,7 +75,12 @@ const OrdersSchema = new Schema(
   }
 );
 
-// For easier accessing orders in database, indexing only the confirmed & delivered
+// Adding the shipping fee that may differ according to location (now it's fixed)
+OrdersSchema.virtual('totalAmountToPay').get(() => {
+  return this.totalAmount + 50;
+});
+
+// For easier & faster accessing orders in database, indexing only the confirmed & delivered
 OrdersSchema.index(
   { user: 1 },
   {

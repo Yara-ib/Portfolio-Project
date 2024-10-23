@@ -15,6 +15,8 @@ export const addProduct = async (req, res) => {
     price,
     description,
     countryOfOrigin,
+    totalStock,
+    sold,
   } = req.body;
 
   // Checking for missing fields
@@ -27,7 +29,9 @@ export const addProduct = async (req, res) => {
     !color ||
     !price ||
     !description ||
-    !countryOfOrigin
+    !countryOfOrigin ||
+    !totalStock ||
+    !sold
   ) {
     return errorHelper(req, res, 'Missing Fields!', 400);
   }
@@ -40,7 +44,9 @@ export const addProduct = async (req, res) => {
     color &&
     price &&
     description &&
-    countryOfOrigin
+    countryOfOrigin &&
+    totalStock &&
+    sold
   ) {
     const checkIfAddedBefore = await Product.findOne({ productName });
     if (checkIfAddedBefore) {
@@ -59,6 +65,8 @@ export const addProduct = async (req, res) => {
     price,
     description,
     countryOfOrigin,
+    totalStock,
+    sold,
     // To check if logged in & adminAccess
     user: req.authorizedId,
   });
