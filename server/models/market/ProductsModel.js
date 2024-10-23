@@ -18,12 +18,16 @@ const ProductsSchema = new Schema(
       type: String,
       required: true,
     },
-    images: {
-      type: [String],
-      required: true,
-    },
+    // Can't have empty values
+    images: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
+    // Could be empty list, but array is required
     color: {
-      type: String,
+      type: [String],
       required: true,
     },
     size: {
@@ -50,6 +54,14 @@ const ProductsSchema = new Schema(
       type: String,
       required: true,
     },
+    totalStock: {
+      type: Number,
+      required: true,
+    },
+    sold: {
+      type: Number,
+      required: true,
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -58,8 +70,15 @@ const ProductsSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: { virtuals: true },
   }
 );
+
+// Adding Virtual properties
+// Getting & updating the current stock after each order
+ProductsSchema.virtual('currentStock').get(() => {
+  return this.totalStock - this.sold;
+});
 
 const Product = model('Product', ProductsSchema);
 export default Product;
