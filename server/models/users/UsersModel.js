@@ -60,6 +60,12 @@ const UsersSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Order',
+      },
+    ],
   },
   {
     timestamps: true,
