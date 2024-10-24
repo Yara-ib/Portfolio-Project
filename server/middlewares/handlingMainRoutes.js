@@ -9,6 +9,7 @@ import { serviceProvidersRoutes } from '../routes/services/serviceProvidersRoute
 import { servicesRoutes } from '../routes/services/servicesRoutes.js';
 import { ordersRoutes } from '../routes/market/OrdersRoutes.js';
 import { authorizationAdminRoutes } from '../routes/users/authorizationAdminRoutes.js';
+import { commentsRoutes } from '../routes/blog/commentsRoutes.js';
 
 export const mainRoutes = Router();
 
@@ -39,6 +40,8 @@ mainRoutes.use('/services', serviceProvidersRoutes);
 mainRoutes.use('/blog/posts', postsRoutes);
 // Bloggers Routes
 mainRoutes.use('/blog', bloggersRoutes);
+// Comments Routes
+mainRoutes.use('/blog/posts/comments', commentsRoutes);
 
 // ~ Checking Any wrong Path
 // Route NOT Found "Last To check"
