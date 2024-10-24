@@ -5,13 +5,13 @@ import Post from '../../models/blog/PostsModel.js';
 // POST Method: Creating New Post | Allowed For Bloggers Only
 // Need Blogger Checking first; handled in middlewares
 export const addPost = async (req, res) => {
-  const { title, description, author, category, image } = req.body;
+  const { title, description, category, image } = req.body;
 
   // Checking for missing fields
-  if (!title || !description || !author || !category) {
+  if (!title || !description ||  !category) {
     return errorHelper(req, res, 'Missing Fields!', 400);
   }
-  if (title && description && author && category) {
+  if (title && description && category) {
     const checkIfAddedBefore = await Post.findOne({ title });
     if (checkIfAddedBefore) {
       return errorHelper(req, res, 'Post title already exists.', 409);
@@ -98,7 +98,7 @@ export const deletePost = async (req, res) => {
   }
 };
 
-// PUT Method: Accessed By Bloggers 
+// PUT Method: Accessed By Bloggers
 export const updatePost = async (req, res) => {
   const { title, description, author, category, image } = req.body;
 
