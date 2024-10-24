@@ -6,6 +6,7 @@ import {
   signUpProvider,
   updateServiceProvider,
 } from '../../controllers/services/serviceProvidersController.js';
+import { adminAccess } from '../../middlewares/adminAccess.js';
 import { checkAccessProvider } from '../../middlewares/checkAccess.js';
 
 export const serviceProvidersRoutes = Router();
