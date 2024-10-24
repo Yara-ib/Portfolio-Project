@@ -7,7 +7,7 @@ const CommentsModel = new Schema(
       required: true,
       ref: 'Post',
     },
-    commentBy: {
+    user: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: 'User',
