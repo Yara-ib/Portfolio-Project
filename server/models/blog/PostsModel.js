@@ -6,7 +6,7 @@ const PostsSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
+    postItself: {
       type: String,
       required: true,
     },
