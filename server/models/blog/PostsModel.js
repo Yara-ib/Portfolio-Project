@@ -25,6 +25,15 @@ const PostsSchema = new Schema(
       type: String,
       default: '../assets/images/ArchiMatter.png',
     },
+    comments: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Comment',
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );
