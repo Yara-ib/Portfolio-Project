@@ -48,3 +48,34 @@ export const addOrder = async (req, res) => {
   const userWithOrders = await User.findById(user._id).populate('orders');
   console.log(userWithOrders.orders); // Logs array of order documents
 };
+
+// GET Method: View Order by Id | Allowed For Users & Admins
+export const getOrder = async (req, res) => {
+  if (req.params.id) {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      return res.status(200).json({
+        order,
+      });
+    } else {
+      return errorHelper(req, res, "There's no such order", 404);
+    }
+  }
+};
+
+// GET Method | Allowed For Users & Admins
+export const getAllOrder = async (req, res) => {
+  let orders = await Order.find();
+
+  if (orders && orders.length > 0) {
+    return res.status(200).json({
+      message: "Here's the list of all Orders",
+      orders,
+    });
+  } else {
+    return res.status(404).json({
+      message: 'No orders have been found',
+      orders: [],
+    });
+  }
+};
