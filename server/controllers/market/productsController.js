@@ -168,6 +168,7 @@ export const updateProduct = async (req, res) => {
 export const getAllProducts = async (req, res) => {
   // converting it to changeable request query when connected to the database; removing the "await"
   // General query depends on the values server gets in the request
+  // if (req.query) {
   let products = Product.find();
 
   // Filter By productName
@@ -225,7 +226,7 @@ export const getAllProducts = async (req, res) => {
     });
 
     // Getting by Exact Price
-  } else {
+  } else if (req.query.price) {
     products = products.find({
       price: parseFloat(req.query.price),
     });
