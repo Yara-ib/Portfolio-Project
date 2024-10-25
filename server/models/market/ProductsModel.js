@@ -76,7 +76,7 @@ const ProductsSchema = new Schema(
 
 // Adding Virtual properties
 // Getting & updating the current stock after each order
-ProductsSchema.virtual('currentStock').get(() => {
+ProductsSchema.virtual('currentStock').get(function () {
   return this.totalStock - this.sold;
 });
 
