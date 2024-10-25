@@ -17,7 +17,7 @@ const CommentsModel = new Schema(
       required: true,
     },
     commentItself: {
-      type: String,
+      type: String, 
       required: true,
     },
     likes: {
