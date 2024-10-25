@@ -7,4 +7,4 @@ import {
 
 export const authorizationRoutes = Router();
 authorizationRoutes.get('/profile', checkAccess, getProfilePage);
-authorizationRoutes.put('/updateProfile', checkAccess, updateProfile);
+authorizationRoutes.put('/updateProfile/:id', checkAccess, updateProfile);
