@@ -5,13 +5,13 @@ import Post from '../../models/blog/PostsModel.js';
 // POST Method: Creating New Post | Allowed For Bloggers Only
 // Need Blogger Checking first; handled in middlewares
 export const addPost = async (req, res) => {
-  const { title, description, category, image } = req.body;
+  const { title, postItself, category, image } = req.body;
 
   // Checking for missing fields
-  if (!title || !description ||  !category) {
+  if (!title || !postItself || !category) {
     return errorHelper(req, res, 'Missing Fields!', 400);
   }
-  if (title && description && category) {
+  if (title && postItself && category) {
     const checkIfAddedBefore = await Post.findOne({ title });
     if (checkIfAddedBefore) {
       return errorHelper(req, res, 'Post title already exists.', 409);
@@ -21,7 +21,7 @@ export const addPost = async (req, res) => {
   //Creating the new Post
   const newPost = new Post({
     title,
-    description,
+    postItself,
     author: req.authorizedId,
     category,
     image,
@@ -85,7 +85,7 @@ export const deletePost = async (req, res) => {
     if (!checkValidId(req)) {
       return errorHelper(req, res, 'Please enter a valid id', 400);
     } else {
-      const postToDelete = await Product.findByIdAndDelete(req.params.id);
+      const postToDelete = await Post.findByIdAndDelete(req.params.id);
       if (postToDelete) {
         console.log('Post was successfully deleted!');
         return res.status(200).json({
