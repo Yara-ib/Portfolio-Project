@@ -120,7 +120,6 @@ export const getProfilePage = async (req, res) => {
 // Protected Path: Must check permissions before accessing it
 export const updateProfile = async (req, res) => {
   const {
-    profilePicture,
     shippingAddress: {
       firstName,
       lastName,
@@ -138,7 +137,6 @@ export const updateProfile = async (req, res) => {
       const profileToUpdate = await User.findByIdAndUpdate(
         req.params.id,
         {
-          profilePicture,
           shippingAddress: {
             firstName,
             lastName,
