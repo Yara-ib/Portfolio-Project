@@ -55,16 +55,17 @@ Create the file ".env" in the main folder to include the following keys:
 
 ________________________________________________________
 
-
 ## Technologies
 
 - **Node.js**: Handling server logic and processing requests.
 - **Express**: Framework used to structure the backend, managing routing, middleware, and APIs.
-- **Mongoose**: For interacting with MongoDB, which is used as the database to store users, blog posts, services, and product data.
+- **Mongoose**: For interacting with MongoDB, which is used as the database to store users, blog posts, services, products, and orders data.
 - **Argon2**: For hashing password, locations, phone numbers, any sensitive data securely to ensure user data protection.
 - **JsonWebToken (JWT)**: To manage user authentication and authorization, providing secure access to different sections of the site.
 - **Nodemon**: Helps with real-time updates during development by automatically restarting the server upon code changes.
 - **Dotenv**: For environment variable management, ensuring sensitive information like database URIs and secret keys are kept secure.
+- **Strip**: For handling the payments in the market section.
+________________________________________________________
 
 ## Features
 ### Main Roles:
@@ -74,15 +75,18 @@ Users || Bloggers || Service Providers || Admins
 * Sign In.
 * Access their Profile Page.
 * Update Profile Page.
-
+*
 ### Unique Features For Each Role:
 #### 1. Users
 ##### Market Section:
-* Make Orders & Add Reviews on Products
+* Getting list of products or using filter.
+* Make Orders & Add Reviews on Products.
+* Add, get all Orders or by Id.
+
 ##### Blog Section:
-* Add Comments on Posts
+* Add Comments on Posts.
 ##### Services Section:
-* Add reviews on Services
+* Add reviews on Services.
 
 #### 2. Service Providers | Only in Services Section
 * Add Services & Update Services.
@@ -91,22 +95,10 @@ Users || Bloggers || Service Providers || Admins
 * Add Posts & Update Posts.
 
 #### 4. Admins
-##### Market Section:
 * Add, delete & update Products.
-* Delete Reviews.
+* Delete Any kind of Accounts.
 
-##### Blog Section:
-* Add, delete & update Posts.
-* Delete Comments.
-
-##### Services Section:
-* Add, delete & update Services.
-* Delete Reviews.
-
-##### Accounts Management Section:
-* Delete || Ban Service Providers' Accounts.
-* Delete || Ban Users' Accounts.
-* Delete || Ban Bloggers' Accounts.
+________________________________________________________
 
 ## Available Endpoints
 For full documentation, check that [link](Shall be added)
@@ -123,8 +115,8 @@ For full documentation, check that [link](Shall be added)
 #### *-* Orders
 ```
 /api/orders/
-/api/orders/add
 /api/orders/:id
+/api/orders/add
 ```
 
 ### Blog
@@ -136,19 +128,24 @@ For full documentation, check that [link](Shall be added)
 /api/blog/posts/update/:id
 /api/blog/posts/delete/:id
 ```
-#### *-* Bloggers
 
+#### *-* Bloggers
 ```
 /api/blog/newblogger
 /api/blog/logblogger
 
 /api/blog/profile
-/api/blog/updateProfile/:id
+/api/blog/profile/update/:id
+/api/blog/profile/delete/:id
+```
+
+#### *-* Comments
+```
+/api/blog/posts/comments/add/:id
 ```
 
 ### Services
 ```
-<!-- Services -->
 /api/services/
 /api/services/:id
 /api/services/add
@@ -157,34 +154,35 @@ For full documentation, check that [link](Shall be added)
 ```
 #### *-* Services Providers
 ```
-<!-- Services Providers -->
 /api/services/newProvider
 /api/services/logProvider
 
-<!-- Services Providers Dashboard -->
 /api/services/profileProvider
 /api/services/updateProfile/:id
 ```
 ### Users
 ```
-/api/users/signup/
-/api/users/signin/
+/api/users/signup
+/api/users/signin
 
-/api/users/profile/
+/api/users/profile
 /api/users/updateProfile/:id
 ```
 
 ### Admins
-
 ```
 /api/admin/
 /api/admin/profile/:id
 /api/admin/updateProfile/:id
 /api/admin/deleteAccount/:id
 ```
+________________________________________________________
 
 ## Contact
 [Yara Nazih](https://github.com/Yara-ib)
+
+________________________________________________________
+
 
 ## Licensing
 MIT license
