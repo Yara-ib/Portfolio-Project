@@ -64,7 +64,7 @@ ________________________________________________________
 - **JsonWebToken (JWT)**: To manage user authentication and authorization, providing secure access to different sections of the site.
 - **Nodemon**: Helps with real-time updates during development by automatically restarting the server upon code changes.
 - **Dotenv**: For environment variable management, ensuring sensitive information like database URIs and secret keys are kept secure.
-- **Strip**: For handling the payments in the market section.
+- **Strip**: For handling the payments of orders in the market section.
 ________________________________________________________
 
 ## Features
@@ -106,79 +106,88 @@ For full documentation, check that [link](Shall be added)
 ### Market
 #### *-* Products
 ```
-/api/products/
-/api/products/:id
-/api/products/add
-/api/products/delete/:id
-/api/products/update/:id
+GET /api/products/
+GET /api/products/:id
+POST /api/products/add
+DELETE /api/products/delete/:id
+PUT /api/products/update/:id
 ```
 #### *-* Orders
 ```
-/api/orders/
-/api/orders/:id
-/api/orders/add
+GET /api/orders/
+GET /api/orders/:id
+POST /api/orders/add
 ```
 
 ### Blog
 #### *-* Posts
 ```
-/api/blog/posts/
-/api/blog/posts/:id
-/api/blog/posts/addPost
-/api/blog/posts/update/:id
-/api/blog/posts/delete/:id
+GET /api/blog/posts/
+GET /api/blog/posts/:id
+POST /api/blog/posts/addPost
+PUT /api/blog/posts/update/:id
+DELETE /api/blog/posts/delete/:id
 ```
 
 #### *-* Bloggers
 ```
-/api/blog/newblogger
-/api/blog/logblogger
+POST /api/blog/newblogger
+POST /api/blog/logblogger
 
-/api/blog/profile
-/api/blog/profile/update/:id
-/api/blog/profile/delete/:id
+GET /api/blog/profile
+PUT /api/blog/profile/update/:id
 ```
 
 #### *-* Comments
 ```
-/api/blog/posts/comments/add/:id
+POST /api/blog/posts/comments/add/:id
 ```
 
 ### Services
 ```
-/api/services/
-/api/services/:id
-/api/services/add
-/api/services/update/:id
-/api/services/delete/:id
+GET /api/services/
+GET /api/services/:id
+POST /api/services/add
+PUT /api/services/update/:id
+DELETE /api/services/delete/:id
 ```
 #### *-* Services Providers
 ```
-/api/services/newProvider
-/api/services/logProvider
+POST /api/services/newProvider
+POST /api/services/logProvider
 
-/api/services/profileProvider
-/api/services/updateProfile/:id
+GET /api/services/profileProvider
+PUT /api/services/updateProfile/:id
 ```
 ### Users
 ```
-/api/users/signup
-/api/users/signin
+POST /api/users/signup
+POST /api/users/signin
 
-/api/users/profile
-/api/users/updateProfile/:id
+GET /api/users/profile
+PUT /api/users/updateProfile/:id
 ```
 
-### Admins
+### Admins "Extra Features"
 ```
-/api/admin/
-/api/admin/profile/:id
-/api/admin/updateProfile/:id
-/api/admin/deleteAccount/:id
+GET /api/admin/profile/:id
+PUT /api/admin/updateProfile/:id
+DELETE /api/admin/deleteAccount/:id
+DELETE /api/blog/profile/delete/:id
+DELETE /api/services/profile/delete/:id
 ```
 ________________________________________________________
 
-## Contact
+## Development
+
+* Frontend Integration: Moving forward, I will focus on integrating the backend API with the frontend.
+* User Notifications: Setting up real-time notifications for users about order updates, new blog posts, and service changes.
+* Monitoring System: Integrate a monitoring system to handle logs, monitor server health, and track application performance. This will allow for proactive issue detection and smoother maintenance.
+* Subscription System for Service Providers: I’ll be implementing a subscription system using Stripe to enable service providers to subscribe to. This system will include secure payment processing, and customizable subscription plans.
+* Real-Time Chat for Customer Service: Implement a real-time chat feature to enhance customer support, allowing users to connect directly with support representatives.
+________________________________________________________
+
+## Authors
 [Yara Nazih](https://github.com/Yara-ib)
 
 ________________________________________________________
