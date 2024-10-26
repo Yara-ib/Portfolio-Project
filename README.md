@@ -2,7 +2,7 @@
 ________________________________________________________
 ## An E-Commerce Website with Services & Blog Sections
 
-![Homepage](ArchiMatter.png)
+![Homepage](./public/assets/images/ArchiMatter.png)
 
 ## Introduction
 *ArchiMatter* aims to connect architects, interior designers, and customers with innovative materials and services. The platform features other two key sections beside the *Market Section*:
