@@ -65,6 +65,7 @@ ________________________________________________________
 - **Nodemon**: Helps with real-time updates during development by automatically restarting the server upon code changes.
 - **Dotenv**: For environment variable management, ensuring sensitive information like database URIs and secret keys are kept secure.
 - **Strip**: For handling the payments of orders in the market section.
+- **Git & GitHub**: For handling version control and development.
 ________________________________________________________
 
 ## Features
