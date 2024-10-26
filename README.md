@@ -75,7 +75,7 @@ Users || Bloggers || Service Providers || Admins
 * Sign In.
 * Access their Profile Page.
 * Update Profile Page.
-*
+
 ### Unique Features For Each Role:
 #### 1. Users
 ##### Market Section:
