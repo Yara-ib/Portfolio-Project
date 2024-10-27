@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import { checkAccess } from '../../middlewares/checkAccess.js';
 import {
+  banBlogger,
+  banSProvider,
+  banUser,
   deleteAccount,
   deleteBlogger,
   deleteServiceProvider,
@@ -34,6 +37,13 @@ authorizationAdminRoutes.put(
   updateUserProfile
 );
 
+authorizationAdminRoutes.put(
+  '/banProfile/:id',
+  checkAccess,
+  adminAccess,
+  banUser
+);
+
 authorizationAdminRoutes.delete(
   '/deleteAccount/:id',
   checkAccess,
@@ -63,6 +73,13 @@ authorizationAdminRoutes.put(
   updateBlogger
 );
 
+authorizationAdminRoutes.put(
+  '/banBlogger/:id',
+  checkAccess,
+  adminAccess,
+  banBlogger
+);
+
 authorizationAdminRoutes.delete(
   '/deleteBlogger/:id',
   checkAccess,
@@ -90,6 +107,13 @@ authorizationAdminRoutes.put(
   checkAccess,
   adminAccess,
   updateSProvider
+);
+
+authorizationAdminRoutes.put(
+  '/banSProvider/:id',
+  checkAccess,
+  adminAccess,
+  banSProvider
 );
 
 authorizationAdminRoutes.delete(

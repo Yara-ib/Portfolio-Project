@@ -64,6 +64,44 @@ export const updateUserProfile = async (req, res) => {
   }
 };
 
+// PUT Method: To ban User
+// Protected Path: Must check permissions before accessing it
+export const banUser = async (req, res) => {
+  const { bannedOrNot } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      if (!req.body || !bannedOrNot) {
+        return errorHelper(req, res, 'Missing Field!', 400);
+      }
+    }
+  }
+
+  const profileToBan = await User.findByIdAndUpdate(
+    req.params.id,
+    {
+      bannedOrNot,
+    },
+    {
+      // To make sure the returned value is updated
+      // because default for findByIdAndUpdate returns the old document
+      new: true,
+    }
+  );
+
+  if (profileToBan) {
+    console.log(`Account was successfully banned!`);
+    return res.status(200).json({
+      message: 'Account was successfully banned!',
+      profileToBan,
+    });
+  } else {
+    return errorHelper(req, res, 'No Profile matches that id!', 404);
+  }
+};
+
 // GET Method: To Access the Profile Page of Users
 // Protected Path: Must check permissions before accessing it
 export const getUserProfile = async (req, res) => {
@@ -153,6 +191,44 @@ export const updateBlogger = async (req, res) => {
     return res.status(200).json({
       message: 'Profile was successfully updated!',
       profileToUpdate,
+    });
+  } else {
+    return errorHelper(req, res, 'No Profile matches that id!', 404);
+  }
+};
+
+// PUT Method: To ban Blogger
+// Protected Path: Must check permissions before accessing it
+export const banBlogger = async (req, res) => {
+  const { bannedOrNot } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      if (!req.body || !bannedOrNot) {
+        return errorHelper(req, res, 'Missing Field!', 400);
+      }
+    }
+  }
+
+  const profileToBan = await Blogger.findByIdAndUpdate(
+    req.params.id,
+    {
+      bannedOrNot,
+    },
+    {
+      // To make sure the returned value is updated
+      // because default for findByIdAndUpdate returns the old document
+      new: true,
+    }
+  );
+
+  if (profileToBan) {
+    console.log(`Account was successfully banned!`);
+    return res.status(200).json({
+      message: 'Account was successfully banned!',
+      profileToBan,
     });
   } else {
     return errorHelper(req, res, 'No Profile matches that id!', 404);
@@ -251,6 +327,44 @@ export const updateSProvider = async (req, res) => {
     return res.status(200).json({
       message: 'Profile was successfully updated!',
       profileToUpdate,
+    });
+  } else {
+    return errorHelper(req, res, 'No Profile matches that id!', 404);
+  }
+};
+
+// PUT Method: To ban Service Provider
+// Protected Path: Must check permissions before accessing it
+export const banSProvider = async (req, res) => {
+  const { bannedOrNot } = req.body;
+
+  if (req.params.id) {
+    if (!checkValidId(req)) {
+      return errorHelper(req, res, 'Please enter a valid id', 400);
+    } else {
+      if (!req.body || !bannedOrNot) {
+        return errorHelper(req, res, 'Missing Field!', 400);
+      }
+    }
+  }
+
+  const profileToBan = await ServiceProvider.findByIdAndUpdate(
+    req.params.id,
+    {
+      bannedOrNot,
+    },
+    {
+      // To make sure the returned value is updated
+      // because default for findByIdAndUpdate returns the old document
+      new: true,
+    }
+  );
+
+  if (profileToBan) {
+    console.log(`Account was successfully banned!`);
+    return res.status(200).json({
+      message: 'Account was successfully banned!',
+      profileToBan,
     });
   } else {
     return errorHelper(req, res, 'No Profile matches that id!', 404);
