@@ -165,22 +165,3 @@ export const updateProfile = async (req, res) => {
     }
   }
 };
-
-// DELETE Method: Accessed By Admins Only for now
-export const deleteAccount = async (req, res) => {
-  if (req.params.id) {
-    if (!checkValidId(req)) {
-      return errorHelper(req, res, 'Please enter a valid Id', 400);
-    }
-  } else {
-    const accountToDelete = await User.findByIdAndDelete(req.params.id);
-    if (accountToDelete) {
-      console.log(`${accountToDelete.username} was successfully deleted!`);
-      return res.status(200).json({
-        message: `${accountToDelete.username} was successfully deleted!`,
-      });
-    } else {
-      return errorHelper(req, res, 'No account matches that id!', 404);
-    }
-  }
-};
