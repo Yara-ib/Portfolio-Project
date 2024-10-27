@@ -64,12 +64,12 @@ ________________________________________________________
 ### Main Roles:
 Users || Bloggers || Service Providers || Admins
 ### Basic Features for all Roles:
-* Sign Up, Sign In, Access their Profile Page &  Update Profile Page.
+* Sign Up, Sign In, Access their Profile Page & Update it.
 
 ### Unique Features For Each Role:
 #### 1. Users
 ##### Market Section:
-* Getting list of products or using filter.
+* Getting list of all Products or by using different filters.
 * Make Orders & Add Reviews on Products.
 * Add, get all Orders or by Id.
 
@@ -86,7 +86,9 @@ Users || Bloggers || Service Providers || Admins
 
 #### 4. Admins
 * Add, delete & update Products.
-* Delete Any kind of Account.
+* Delete or Ban Any kind of Account.
+* Get List of Users, Service Providers, and Bloggers.
+* Update the username & email for Users, Service Providers, and Bloggers.
 
 ________________________________________________________
 
@@ -158,13 +160,26 @@ GET /api/users/profile
 PUT /api/users/updateProfile/:id
 ```
 
-### Admins | Extra Features
+### Admins | Other Accounts Management
 ```
+GET /api/admin/users
 GET /api/admin/profile/:id
 PUT /api/admin/updateProfile/:id
+PUT /api/admin/banProfile/:id
 DELETE /api/admin/deleteAccount/:id
-DELETE /api/blog/profile/delete/:id
-DELETE /api/services/profile/delete/:id
+
+GET /api/admin/bloggers
+GET /api/admin/profileBlogger/:id
+PUT /api/admin/updateBlogger/:id
+PUT /api/admin/banBlogger/:id
+DELETE /api/admin/deleteBlogger/:id
+
+GET /api/admin/providers
+GET /api/admin/profileProvider/:id
+PUT /api/admin/updateSProvider/:id
+PUT /api/admin/banSProvider/:id
+DELETE /api/admin/deleteSProvider/:id
+
 ```
 ________________________________________________________
 
