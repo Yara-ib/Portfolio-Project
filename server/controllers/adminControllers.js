@@ -54,7 +54,7 @@ export const updateUserProfile = async (req, res) => {
   );
 
   if (profileToUpdate) {
-    console.log(`Profile was successfully updated!`);
+    console.log('Profile was successfully updated!');
     return res.status(200).json({
       message: 'Profile was successfully updated!',
       profileToUpdate,
@@ -92,7 +92,7 @@ export const banUser = async (req, res) => {
   );
 
   if (profileToBan) {
-    console.log(`Account was successfully banned!`);
+    console.log('Account was successfully banned!');
     return res.status(200).json({
       message: 'Account was successfully banned!',
       profileToBan,
@@ -187,7 +187,7 @@ export const updateBlogger = async (req, res) => {
   );
 
   if (profileToUpdate) {
-    console.log(`Profile was successfully updated!`);
+    console.log('Profile was successfully updated!');
     return res.status(200).json({
       message: 'Profile was successfully updated!',
       profileToUpdate,
@@ -225,7 +225,7 @@ export const banBlogger = async (req, res) => {
   );
 
   if (profileToBan) {
-    console.log(`Account was successfully banned!`);
+    console.log('Account was successfully banned!');
     return res.status(200).json({
       message: 'Account was successfully banned!',
       profileToBan,
@@ -323,7 +323,7 @@ export const updateSProvider = async (req, res) => {
   );
 
   if (profileToUpdate) {
-    console.log(`Profile was successfully updated!`);
+    console.log('Profile was successfully updated!');
     return res.status(200).json({
       message: 'Profile was successfully updated!',
       profileToUpdate,
@@ -361,7 +361,7 @@ export const banSProvider = async (req, res) => {
   );
 
   if (profileToBan) {
-    console.log(`Account was successfully banned!`);
+    console.log('Account was successfully banned!');
     return res.status(200).json({
       message: 'Account was successfully banned!',
       profileToBan,
@@ -379,7 +379,6 @@ export const getSProviderProfile = async (req, res) => {
       return errorHelper(req, res, 'Please enter a valid Id', 400);
     } else {
       const accountToView = await ServiceProvider.findById(req.params.id);
-      console.log(accountToView);
       if (accountToView) {
         console.log(`Admin checked ${accountToView.username}'s profile page`);
         return res.status(200).json({

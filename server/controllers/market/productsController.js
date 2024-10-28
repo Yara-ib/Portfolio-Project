@@ -103,7 +103,7 @@ export const deleteProduct = async (req, res) => {
     } else {
       const productIDToDelete = await Product.findByIdAndDelete(req.params.id);
       if (productIDToDelete) {
-        console.log(`Product was successfully deleted!`);
+        console.log('Product was successfully deleted!');
         return res.status(200).json({
           message: 'Product was successfully deleted!',
         });
@@ -152,7 +152,7 @@ export const updateProduct = async (req, res) => {
         }
       );
       if (productToUpdate) {
-        console.log(`Product was successfully updated!`);
+        console.log('Product was successfully updated!');
         return res.status(200).json({
           message: 'Product was successfully updated!',
           productToUpdate,

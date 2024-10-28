@@ -148,7 +148,7 @@ export const updateServiceProvider = async (req, res) => {
       );
 
       if (profileToUpdate) {
-        console.log(`Profile was successfully updated!`);
+        console.log('Profile was successfully updated!');
         return res.status(200).json({
           message: 'Profile was successfully updated!',
           profileToUpdate,

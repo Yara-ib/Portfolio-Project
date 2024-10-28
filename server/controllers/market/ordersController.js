@@ -1,7 +1,6 @@
 import { errorHelper } from '../../helpers/errorHelper.js';
 import Order from '../../models/market/OrdersModel.js';
 import User from '../../models/users/UsersModel.js';
-// import { session } from './paymentController.js';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
 
@@ -48,14 +47,14 @@ export const addOrder = async (req, res) => {
   await user.save();
   // Add order details in users
   const userWithOrders = await User.findById(user._id).populate('orders');
-  // Logs array of order documents "For debugging"
-  console.log(userWithOrders.orders);
+  // Logs array of order documents "For debugging during development"
+  // console.log(userWithOrders.orders);
 
   // Add products details to orders
   const OrdersWithProducts = await Order.findById(newOrder._id).populate(
     'products.productInCart'
   );
-  // Logs array of order documents "For debugging"
+  // Logs array of order documents "For debugging during development"
   // console.log(OrdersWithProducts);
 
   // Stripe Payment Integration
