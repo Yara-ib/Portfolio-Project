@@ -1,6 +1,8 @@
 # ArchiMatter | ALX Portfolio-Project
+
 ________________________________________________________
-## An E-Commerce Website with Services & Blog Sections
+
+## An E-Commerce API with Services & Blog Sections
 
 ![Logo](./public/assets/images/ArchiMatter.png)
 
@@ -23,8 +25,8 @@ ________________________________________________________
 
 ## Prerequisites
 - Any IDE - Example: VS Code [Install From Here](https://code.visualstudio.com/download)
-- Node.js v22.4.0 & npm v10.8.3 or later versions - [Install From Here](https://nodejs.org/en/download/package-manager)
-- MongoDB - [Install From Here](https://docs.mongodb.com/manual/installation/)
+- Node.js v22.4.0 & npm v10.8.3 or later - [Install From Here](https://nodejs.org/en/download/package-manager)
+- MongoDB v7.0.12 or later - [Install From Here](https://docs.mongodb.com/manual/installation/)
 - Postman - [Install From Here](https://www.postman.com/downloads/)
 
 ________________________________________________________
@@ -41,6 +43,7 @@ To run the project, clone it locally or download it.
 Create the file ".env" in the main folder to include the following keys:
 * `MONGO_URI`= Database Details.
 * `JWToken`= Key for JSON Web Token.
+* `STRIPE_SK`= Key for Stripe Payments
 
 ### Install dependencies with required versions
 `npm install`
@@ -53,11 +56,12 @@ Use Postman or in your browser, go to: `https://localhost:5000`
 
 ________________________________________________________
 
- ## Technologies
+## Technologies
 
 - **Node.js**
 - **Express**
 - **MongoDB**
+
 ________________________________________________________
 
 ## Features

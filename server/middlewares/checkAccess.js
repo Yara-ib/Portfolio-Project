@@ -16,7 +16,7 @@ export const checkAccess = async (req, res, next) => {
     req.authorizedId = access.id;
     const userById = await User.findById(access.id);
     console.log(
-      `${userById.username}: (${userById.shippingAddress.firstName}) granted access as a user`
+      `${userById} was granted access as a user`
     );
     next();
   } else {
