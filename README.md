@@ -191,7 +191,7 @@ ________________________________________________________
 
 * **Frontend Integration:** Integrating the backend API with the frontend.
 * **User Notifications:** Setting up real-time notifications for users.
-* **Monitoring System:** Integrate a monitoring system to monitor server health, and track the performance.
+* **Better Monitoring System:** Integrate a monitoring system to monitor server health, and track the performance.
 * **Subscription System for Service Providers:** Implementing a subscription system.
 * **Real-Time Chat for Customer Service:** Implement a real-time chat feature.
 

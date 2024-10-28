@@ -36,10 +36,10 @@ mainRoutes.use('/services', servicesRoutes);
 mainRoutes.use('/services', serviceProvidersRoutes);
 
 // ~ Blog Section Routes::
-// Posts Routes
-mainRoutes.use('/blog/posts', postsRoutes);
 // Bloggers Routes
 mainRoutes.use('/blog', bloggersRoutes);
+// Posts Routes
+mainRoutes.use('/blog/posts', postsRoutes);
 // Comments Routes
 mainRoutes.use('/blog/posts/comments', commentsRoutes);
 

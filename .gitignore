@@ -5,5 +5,4 @@
 .env
 
 # Drafts Files
-data.json
-routesApi.md
+/DummyDataForDataBase
