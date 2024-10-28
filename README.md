@@ -97,7 +97,7 @@ Users || Bloggers || Service Providers || Admins
 ________________________________________________________
 
 ## Available Endpoints
-For full documentation, check [Here](https://web.postman.co/workspace/ArchiMatter-Project~b5a6aac8-59a5-4584-8be7-8f1c9bd75140/overview)
+For full documentation, check [Here](https://documenter.getpostman.com/view/37391633/2sAY4uBNZE)
 
 ### Market
 #### *-* Products
