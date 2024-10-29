@@ -40,7 +40,7 @@ export const addOrder = async (req, res) => {
   });
 
   await newOrder.save();
-  console.log(`New order by ${user} been made!`);
+  console.log(`New order by ${user.username} been made!`);
 
   // Add order to Each User
   user.orders.push(newOrder._id);

@@ -14,11 +14,14 @@ export const checkAccess = async (req, res, next) => {
 
   if (access) {
     req.authorizedId = access.id;
+
     const userById = await User.findById(access.id);
-    console.log(
-      `${userById} was granted access as a user`
-    );
-    next();
+    if (userById) {
+      console.log(`${userById.username} was granted access as a user`);
+      next();
+    } else {
+      errorHelper(req, res, 'No Profile matches that id!', 404);
+    }
   } else {
     errorHelper(req, res, 'Access Denied, please try logging in again', 403);
   }
