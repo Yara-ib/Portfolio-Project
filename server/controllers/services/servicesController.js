@@ -6,7 +6,6 @@ import Service from '../../models/services/ServicesModel.js';
 export const addService = async (req, res) => {
   const {
     serviceName,
-    serviceProvider,
     images,
     category,
     startingPrice,
@@ -17,7 +16,6 @@ export const addService = async (req, res) => {
   // Checking for missing fields
   if (
     !serviceName ||
-    !serviceProvider ||
     !images ||
     !category ||
     !startingPrice ||
