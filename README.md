@@ -74,13 +74,11 @@ Users || Bloggers || Service Providers || Admins
 #### 1. Users
 ##### Market Section:
 * Getting list of all Products or by using different filters.
-* Make Orders & Add Reviews on Products.
+* Make Orders on Products.
 * Add, get all Orders or by Id.
 
 ##### Blog Section:
 * Add Comments on Posts.
-##### Services Section:
-* Add reviews on Services.
 
 #### 2. Service Providers
 * Add Services & Update Services.
