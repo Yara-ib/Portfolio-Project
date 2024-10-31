@@ -6,3 +6,6 @@
 
 # Drafts Files
 /DummyDataForDataBase
+
+# Other Paths
+.vscode

@@ -187,7 +187,7 @@ ________________________________________________________
 
 ## Development
 
-* **Frontend Integration:** Integrating the backend API with the frontend.
+* **Frontend Integration:** Integrating the server side with a client side.
 * **User Notifications:** Setting up real-time notifications for users.
 * **Better Monitoring System:** Integrate a monitoring system to monitor server health, and track the performance.
 * **Subscription System for Service Providers:** Implementing a subscription system.
