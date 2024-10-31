@@ -32,13 +32,11 @@ describe('Services Test Suite', () => {
       'message',
       "Here's the list of all services"
     );
-    // if (response.body.services.length > 0) {
     expect(response.body.services[0]).to.have.property('serviceName');
     expect(response.body.services[0]).to.have.property('category');
     expect(response.body.services[0]).to.have.property('startingPrice');
     expect(response.body.services[0]).to.have.property('description');
     expect(response.body.services[0]).to.have.property('countryOfProvider');
-    // }
   });
 
   // GET /api/services/:id
