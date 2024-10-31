@@ -102,7 +102,7 @@ describe('Users Test Suite', () => {
     });
 
     // PUT /api/users/updateProfile/:id
-    it('User Profile Test', async () => {
+    it('Update Profile Test', async () => {
       const response = await request(app)
         .put(`/api/users/updateProfile/${userId}`)
         .set('Authorization', `Bearer ${tokenUser}`)
