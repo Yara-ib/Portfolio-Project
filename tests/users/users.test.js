@@ -9,7 +9,7 @@ import app from '../../server/app/app.js';
 // PUT /api/users/updateProfile/:id
 
 describe('Users Test Suite', () => {
-  describe('Users Authorization Tests', () => {
+  describe('Users Authentication Tests', () => {
     const userData = {
       username: 'Denis_Simonis9',
       email: 'Lindsay.Gorczany@yahoo.com',
