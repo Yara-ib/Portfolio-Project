@@ -16,19 +16,13 @@ serviceProvidersRoutes.post('/logProvider', signInProvider);
 
 // Profile & Account Management
 serviceProvidersRoutes.get(
-  '/profileProvider',
+  '/getProvider/:id',
   checkAccessProvider,
   getProfileProvider
 );
 
 serviceProvidersRoutes.put(
-  '/profile/update',
+  '/profile/update/:id',
   checkAccessProvider,
   updateServiceProvider
-);
-serviceProvidersRoutes.delete(
-  '/profile/delete',
-  checkAccessProvider,
-  adminAccess,
-  deleteServiceProvider
 );

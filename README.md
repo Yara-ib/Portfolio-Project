@@ -150,8 +150,8 @@ DELETE /api/services/delete/:id
 POST /api/services/newProvider
 POST /api/services/logProvider
 
-GET /api/services/profileProvider
-PUT /api/services/updateProfile/:id
+GET /api/services/getProvider/:id
+PUT /api/services/profile/update/:id
 ```
 ### Users
 ```
